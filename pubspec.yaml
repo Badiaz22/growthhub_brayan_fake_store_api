@@ -1,0 +1,22 @@
+name: brayan_fake_store_api
+description: >
+  A Flutter/Dart package that provides a clean, typed interface to the
+  Fake Store API (https://fakestoreapi.com). Built with Clean Architecture,
+  SOLID principles, and functional error handling via Either<Failure, T>.
+version: 1.0.0
+homepage: https://fakestoreapi.com
+
+environment:
+  sdk: ^3.11.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.2
+  dartz: ^0.10.1
+
+dev_dependencies:
+  flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter
