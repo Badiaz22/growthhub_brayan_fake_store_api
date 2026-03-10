@@ -31,6 +31,14 @@ dependencies:
       url: https://github.com/Badiaz22/growthhub_brayan_fake_store_api.git
       ref: main
 ```
+O de manera local
+
+```yaml
+dependencies:
+  brayan_fake_store_api:
+    path: ../
+```
+
 
 ```bash
 flutter pub get
