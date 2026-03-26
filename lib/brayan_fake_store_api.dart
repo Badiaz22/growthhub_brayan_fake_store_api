@@ -30,6 +30,12 @@ export 'src/domain/entities/geolocation_entity.dart';
 export 'src/domain/entities/cart_product_entity.dart';
 export 'src/domain/entities/auth_response_entity.dart';
 
+/// Repositorios por dominio (para inyección de dependencias avanzada)
+export 'src/domain/repositories/product_repository.dart';
+export 'src/domain/repositories/user_repository.dart';
+export 'src/domain/repositories/cart_repository.dart';
+export 'src/domain/repositories/auth_repository.dart';
+
 /// Errores
 export 'src/core/errors/failure.dart';
 
