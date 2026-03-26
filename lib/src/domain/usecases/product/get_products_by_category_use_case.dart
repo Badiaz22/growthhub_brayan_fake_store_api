@@ -1,11 +1,11 @@
 import 'package:brayan_fake_store_api/src/core/errors/failure.dart';
 import 'package:brayan_fake_store_api/src/domain/entities/product_entity.dart';
-import 'package:brayan_fake_store_api/src/domain/repositories/fakestore_repository.dart';
+import 'package:brayan_fake_store_api/src/domain/repositories/product_repository.dart';
 import 'package:dartz/dartz.dart';
 
 /// Caso de uso: obtiene todos los productos que pertenecen a una [category].
 class GetProductsByCategoryUseCase {
-  final FakestoreRepository _repository;
+  final ProductRepository _repository;
 
   const GetProductsByCategoryUseCase(this._repository);
 
@@ -13,6 +13,5 @@ class GetProductsByCategoryUseCase {
     String category, {
     int? limit,
     String? sort,
-  }) =>
-      _repository.getProductsByCategory(category, limit: limit, sort: sort);
+  }) => _repository.getProductsByCategory(category, limit: limit, sort: sort);
 }

@@ -1,18 +1,18 @@
 import 'package:brayan_fake_store_api/src/core/errors/failure.dart';
 import 'package:brayan_fake_store_api/src/domain/entities/cart_entity.dart';
 import 'package:brayan_fake_store_api/src/domain/entities/cart_product_entity.dart';
-import 'package:brayan_fake_store_api/src/domain/repositories/fakestore_repository.dart';
+import 'package:brayan_fake_store_api/src/domain/repositories/cart_repository.dart';
 import 'package:dartz/dartz.dart';
 
-/// Caso de uso: crea un nuevo carrito y lo retorna con su [id] asignado.
-class CreateCartUseCase {
-  final FakestoreRepository _repository;
+/// Caso de uso: reemplaza un carrito completo (PUT). Retorna el recurso actualizado.
+class UpdateCartUseCase {
+  final CartRepository _repository;
 
-  const CreateCartUseCase(this._repository);
+  const UpdateCartUseCase(this._repository);
 
   Future<Either<Failure, CartEntity>> call(
+    int id,
     int userId,
     List<CartProductEntity> products,
-  ) =>
-      _repository.createCart(userId, products);
+  ) => _repository.updateCart(id, userId, products);
 }
