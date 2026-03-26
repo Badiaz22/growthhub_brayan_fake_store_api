@@ -10,9 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
   brayan_fake_store_api:
-    git:
-      url: https://github.com/Badiaz22/growthhub_brayan_fake_store_api.git
+    path: ../
   flutter_riverpod: ^2.5.1
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:

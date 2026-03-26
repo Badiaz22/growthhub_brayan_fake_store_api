@@ -20,11 +20,9 @@ packages:
   brayan_fake_store_api:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "9e8cf2d4dff07785207cf3e5e73183ba667d463e"
-      url: "https://github.com/Badiaz22/growthhub_brayan_fake_store_api.git"
-    source: git
+      path: ".."
+      relative: true
+    source: path
     version: "1.0.0"
   characters:
     dependency: transitive
@@ -93,7 +91,7 @@ packages:
     source: sdk
     version: "0.0.0"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       sha256: "87721a4a50b19c7f1d49001e51409bddc46303966ce89a65af4f4e6004896412"

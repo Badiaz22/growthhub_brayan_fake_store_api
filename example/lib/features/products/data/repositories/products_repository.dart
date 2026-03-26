@@ -13,6 +13,9 @@ import 'package:brayan_fake_store_api/brayan_fake_store_api.dart';
 /// de Dart estándar para que Riverpod los capture automáticamente en el
 /// estado de error del [AsyncValue].
 ///
+/// Depende de [FakestoreRepository] (contrato estable) en lugar de
+/// [BrayanFakeStoreApi] (clase concreta), reduciendo el acoplamiento.
+///
 /// Ejemplo de uso en un provider:
 /// ```dart
 /// final productsProvider = FutureProvider<List<ProductEntity>>((ref) {
@@ -20,20 +23,21 @@ import 'package:brayan_fake_store_api/brayan_fake_store_api.dart';
 /// });
 /// ```
 class ProductsRepository {
-  final BrayanFakeStoreApi _api;
+  final FakestoreRepository _repository;
 
-  /// Crea el repositorio con una instancia del API.
+  /// Crea el repositorio con una instancia de [FakestoreRepository].
   ///
-  /// El parámetro [api] es opcional para facilitar la inyección de un mock
-  /// en pruebas unitarias.
-  ProductsRepository({BrayanFakeStoreApi? api})
-      : _api = api ?? BrayanFakeStoreApi();
+  /// El parámetro [repository] es opcional. Si no se proporciona, se utiliza
+  /// [BrayanFakeStoreApi.buildRepository()] para construir automáticamente
+  /// la cadena de dependencias completa.
+  ProductsRepository({FakestoreRepository? repository})
+      : _repository = repository ?? BrayanFakeStoreApi.buildRepository();
 
   /// Obtiene el listado completo de productos.
   ///
   /// Lanza una [Exception] con el mensaje de error si la llamada falla.
   Future<List<ProductEntity>> getProducts() async {
-    final result = await _api.getProducts();
+    final result = await _repository.getProducts();
     return result.fold(
       (failure) => throw Exception(failure.message),
       (products) => products,
@@ -44,7 +48,7 @@ class ProductsRepository {
   ///
   /// Lanza una [Exception] con el mensaje de error si la llamada falla.
   Future<List<ProductEntity>> getProductsByCategory(String category) async {
-    final result = await _api.getProductsByCategory(category);
+    final result = await _repository.getProductsByCategory(category);
     return result.fold(
       (failure) => throw Exception(failure.message),
       (products) => products,
@@ -55,7 +59,7 @@ class ProductsRepository {
   ///
   /// Lanza una [Exception] con el mensaje de error si la llamada falla.
   Future<ProductEntity> getProductById(int id) async {
-    final result = await _api.getProductById(id);
+    final result = await _repository.getProductById(id);
     return result.fold(
       (failure) => throw Exception(failure.message),
       (product) => product,
@@ -66,7 +70,7 @@ class ProductsRepository {
   ///
   /// Lanza una [Exception] con el mensaje de error si la llamada falla.
   Future<List<CategoryEntity>> getCategories() async {
-    final result = await _api.getCategories();
+    final result = await _repository.getCategories();
     return result.fold(
       (failure) => throw Exception(failure.message),
       (categories) => categories,
